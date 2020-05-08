@@ -1,7 +1,11 @@
 class Solution {
 public:
+    //for 3 points p1(x1,y1),p2(x2,y2) and p3(x3,y3)
+    //to be in same line the slope should be equal
+    //(y2-y1)/(x2-x1) = (y3-y2)/(x3-x2)
     double getSlope(int x1,int y1,int x2,int y2)
     {
+        //for
         if(x2-x1 == 0)
             return 0;
         else

@@ -5,7 +5,6 @@ public:
     //(y2-y1)/(x2-x1) = (y3-y2)/(x3-x2)
     double getSlope(int x1,int y1,int x2,int y2)
     {
-        //for
         if(x2-x1 == 0)
             return 0;
         else

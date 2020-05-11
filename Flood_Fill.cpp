@@ -27,7 +27,15 @@ The value of each color in image[i][j] and newColor will be an integer in [0, 65
 /*
 Solution approach : 
 
-Fill the current pixel and check if right,left,top,down pixel has the same color. Call fill recursively on that pixel.
+Recursive approach : 
+fill the current pixel and check if right,left,top,down pixel has the same color. 
+Call fill recursively on that pixel.
+
+Iterative approach: 
+Add the initial pixel in queue. 
+Perform while queue is not empty ->
+1. take out the pixel from queue and fill it. 
+2. Check left,right,top,down pixel if it has the same color as original add that pixel in queue.
 */
 class Solution {
 public:
@@ -52,11 +60,40 @@ public:
              fillImageRec(image,x+1,y,origC,newC);
         
     }
+    void fillImageUsingQ(vector<vector<int>>& image, int sr, int sc, int newColor)
+    {
+        int O = image[sr][sc];
+
+        queue<pair<int,int>>q;
+        q.push(pair(sr,sc));
+        while(!q.empty())
+        {
+            auto point = q.front();
+            q.pop();
+            int x = point.first;
+            int y = point.second;
+            image[x][y] = newColor;
+
+            //check left
+            if(y-1 >=0 && image[x][y-1] == O)
+                q.push(pair(x,y-1));
+            //check right
+            if((y+1 < image[0].size()) && image[x][y+1] == O)
+                q.push(pair(x,y+1));
+            //check up
+            if(x-1 >=0 && image[x-1][y] == O)
+                q.push(pair(x-1,y));
+            //check down
+            if((x+1 < image.size()) && image[x+1][y] == O)
+                q.push(pair(x+1,y));
+        } 
+    }
     
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
         if(image[sr][sc] != newColor) //if this check is omitted it will run forever
         {
-             fillImageRec(image,sr,sc,image[sr][sc],newColor); 
+             fillImageUsingQ(image,sr,sc,newColor);  // iterative using queue
+             //fillImageRec(image,sr,sc,image[sr][sc],newColor); //recursive approach
         }
         return image; 
         

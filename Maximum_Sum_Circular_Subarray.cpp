@@ -89,8 +89,8 @@ To find max sum in original array -> apply Kadane's algo
 To find max sum in cicrular array
 If we observe the max sum sub array in circular array, we can see that the remaining sub-array is always the minimum sum sub array.
 e.g
-5 -3 5 => max sub array 5 -3 5 min sum -> 5 -3 5
-3, 4, -6, -5, 2, 7, -1,8 max sub array 3, 4, -6, -5, 2, 7, -1,8 min sum 3, 4, -6, -5, 2, 7, -1,8
+5 -3 5 => max sub array [5 5]  min sum -> [ -3 ]
+3, 4, -6, -5, 2, 7, -1,8 max sub array [3, 4,  2, 7, -1,8] min sum [-6, -5,]
 So, in this case we will find the minimum sum sub array instead of max using same algo and subtract it from total sum.
 Thus we will get the max sum in circular sub array.
 
